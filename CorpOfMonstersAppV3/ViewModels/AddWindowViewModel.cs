@@ -12,7 +12,7 @@ public class AddWindowViewModel : ViewModelBase
 {
     public AddWindowViewModel()
     {
-        ContractName = new ObservableCollection<string>
+        Contracts = new ObservableCollection<string>
         {
             "Intern",
             "Regular"
@@ -26,7 +26,7 @@ public class AddWindowViewModel : ViewModelBase
         Console.WriteLine(ComboContractSelected);
     }
     
-    public ObservableCollection<string> ContractName { get; }
+    public ObservableCollection<string> Contracts { get; }
 
     public ReactiveCommand<Unit, Employee>? AddEmployee { get; } 
     

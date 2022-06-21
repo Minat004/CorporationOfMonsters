@@ -23,6 +23,7 @@ namespace CorpOfMonstersAppV3.ViewModels
                 var form = new AddWindowViewModel();
                 var result = await ShowAddDialog.Handle(form);
                 Workers.Add(result);
+                Console.WriteLine(result.Contract);
             });
             EditWindowCommand = ReactiveCommand.CreateFromTask(async () =>
             {

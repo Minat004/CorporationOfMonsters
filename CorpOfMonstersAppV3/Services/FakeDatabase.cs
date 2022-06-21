@@ -17,4 +17,18 @@ public static class FakeDatabase
             LastName = "password"
         }
     };
+
+    public static IEnumerable<Contract> GetContracts() => new List<Contract>()
+    {
+        new Contract()
+        {
+            Name = "Intern",
+            ContractType = new Intern()
+        },
+        new Contract()
+        {
+            Name = "Regular",
+            ContractType = new Regular()
+        }
+    };
 }
