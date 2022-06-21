@@ -1,0 +1,52 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="CorpOfMonstersAppV3.Views.EditWindow"
+        CanResize="False"
+        Title="Edit Employee"
+        MaxWidth="450" MaxHeight="250"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner">
+    <Grid ShowGridLines="False"
+          ColumnDefinitions="*"
+          RowDefinitions="Auto,Auto,Auto,Auto"
+          Margin="5">
+        <TextBox Grid.Row="0"
+                 Grid.Column="0"
+                 x:Name="EditFirstName"
+                 Text="{Binding EditFirstName, Mode=TwoWay}"
+                 Margin="5"
+                 Watermark="First Name:"/>
+        <TextBox Grid.Row="1"
+                 Grid.Column="0"
+                 x:Name="EditLastName"
+                 Text="{Binding EditLastName, Mode=TwoWay}"
+                 Margin="5"
+                 Watermark="Last Name:"/>
+        <ComboBox Grid.Row="2" 
+                  x:Name="EditContract"
+                  SelectedIndex="0"
+                  HorizontalAlignment="Stretch"
+                  Margin="5"
+                  FontSize="16">
+            <ComboBoxItem>Intern</ComboBoxItem>
+            <ComboBoxItem>Regular</ComboBoxItem>
+        </ComboBox>
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button x:Name="SaveButton"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Content="SAVE"
+                    Command="{Binding EditEmployee}"/>
+            <Button x:Name="CancelButton"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Click="CancelButton_OnClick"
+                    Content="Cancel"/>
+        </StackPanel>
+    </Grid>
+</Window>

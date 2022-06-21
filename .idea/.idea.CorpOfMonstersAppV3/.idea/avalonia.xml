@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="CorpOfMonstersAppV3/App.axaml" value="CorpOfMonstersAppV3/CorpOfMonstersAppV3.csproj" />
+        <entry key="CorpOfMonstersAppV3/Views/AddWindow.axaml" value="CorpOfMonstersAppV3/CorpOfMonstersAppV3.csproj" />
+        <entry key="CorpOfMonstersAppV3/Views/EditWindow.axaml" value="CorpOfMonstersAppV3/CorpOfMonstersAppV3.csproj" />
+        <entry key="CorpOfMonstersAppV3/Views/MainWindow.axaml" value="CorpOfMonstersAppV3/CorpOfMonstersAppV3.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

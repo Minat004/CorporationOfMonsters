@@ -1,0 +1,75 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CorpOfMonstersAppV3.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="CorpOfMonstersAppV3.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Corporation of Monsters"
+        Width="600" Height="700"
+        MinWidth="600" MinHeight="700"
+        WindowStartupLocation="CenterScreen">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <Grid ShowGridLines="False" 
+          ColumnDefinitions="*,*,*" 
+          RowDefinitions="Auto,*,Auto"
+          Margin="5">
+        <TextBox Grid.Row="0"
+                 Grid.Column="0" 
+                 Grid.ColumnSpan="3" 
+                 Margin="5"
+                 Watermark="Search..."/>
+        <DataGrid Grid.Row="1" 
+                  Grid.Column="0" 
+                  Grid.ColumnSpan="3"
+                  x:Name="EmployeeDataGrid"
+                  Margin="5"
+                  SelectionMode="Single"
+                  Items="{Binding Workers, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedWorker, Mode=TwoWay}"
+                  SelectedIndex="{Binding SelectedWorkerIndex, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="First name"
+                                    Width="*"
+                                    Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Last name"
+                                    Width="*"
+                                    Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Salary"
+                                    Width="*"
+                                    Binding="{Binding Salary}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button
+            x:Name="Add"
+            Content="ADD"
+            Grid.Row="2"
+            Grid.Column="0" 
+            HorizontalAlignment="Stretch" 
+            Margin="5" 
+            HorizontalContentAlignment="Center"
+            Command="{Binding AddWindowCommand}"/>
+        <Button 
+            x:Name="Edit"
+            Content="EDIT"
+            Grid.Row="2"
+            Grid.Column="1" 
+            HorizontalAlignment="Stretch"
+            Margin="5"
+            HorizontalContentAlignment="Center"
+            Command="{Binding EditWindowCommand}"/>
+        <Button 
+            x:Name="Delete"
+            Content="DELETE"
+            Grid.Row="2" Grid.Column="2"
+            HorizontalAlignment="Stretch"
+            Margin="5"
+            HorizontalContentAlignment="Center"/>
+    </Grid>
+
+</Window>
