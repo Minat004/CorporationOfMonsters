@@ -4,7 +4,7 @@ public class Employee
 {
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
-    public IContract Contract { get; set; }
+    public IContract? Contract { get; set; }
     public double Salary { get; }
     
     public Employee()
@@ -21,14 +21,14 @@ public class Employee
         Contract = new Intern();
         Salary = Contract.Salary();
     }
-    public Employee(string? firstName, string? lastName, IContract arg)
+    public Employee(string? firstName, string? lastName, IContract? arg)
     {
         FirstName = firstName;
         LastName = lastName;
         Contract = arg;
-        Salary = Contract.Salary();
+        Salary = Contract!.Salary();
     }
-    public void ChangeContract(IContract arg)
+    public void ChangeContract(IContract? arg)
     {
         Contract = arg;
     }
@@ -38,5 +38,5 @@ public class Employee
         return employee;
     }
     
-    public override string ToString() => $"Name: {FirstName}, Surname: {LastName}, Salary: {Contract.Salary()}";
+    public override string ToString() => $"Name: {FirstName}, Surname: {LastName}, Salary: {Contract!.Salary()}";
 }

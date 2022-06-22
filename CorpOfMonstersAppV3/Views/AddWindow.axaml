@@ -39,6 +39,11 @@
                   FontSize="16"
                   Items="{Binding Contracts}"
                   SelectedItem="{Binding ComboContractSelected}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
         </ComboBox>
         <StackPanel Grid.Row="3"
                     Orientation="Horizontal"
