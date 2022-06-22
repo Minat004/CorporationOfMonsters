@@ -43,6 +43,7 @@ namespace CorpOfMonstersAppV3.ViewModels
         }
         
         public Employee? SelectedWorker { get; set; }
+        
         public int SelectedWorkerIndex { get; set; }
 
         public ICommand AddWindowCommand { get; }
