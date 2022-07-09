@@ -23,14 +23,15 @@
                  Grid.Column="0" 
                  Grid.ColumnSpan="3" 
                  Margin="5"
-                 Watermark="Search..."/>
+                 Watermark="Search..."
+                 Text="{Binding SearchText}"/>
         <DataGrid Grid.Row="1" 
                   Grid.Column="0" 
                   Grid.ColumnSpan="3"
                   x:Name="EmployeeDataGrid"
                   Margin="5"
                   SelectionMode="Single"
-                  Items="{Binding Workers, Mode=TwoWay}"
+                  Items="{Binding WorkersCollectionView, Mode=TwoWay}"
                   SelectedItem="{Binding SelectedWorker, Mode=TwoWay}"
                   SelectedIndex="{Binding SelectedWorkerIndex, Mode=TwoWay}">
             <DataGrid.Columns>
@@ -69,7 +70,8 @@
             Grid.Row="2" Grid.Column="2"
             HorizontalAlignment="Stretch"
             Margin="5"
-            HorizontalContentAlignment="Center"/>
+            HorizontalContentAlignment="Center"
+            Command="{Binding DeleteCommand}"/>
     </Grid>
 
 </Window>

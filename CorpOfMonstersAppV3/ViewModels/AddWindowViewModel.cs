@@ -1,11 +1,8 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Reactive;
-using System.Threading.Tasks;
 using ReactiveUI;
 using CorpOfMonstersAppV3.Models;
 using CorpOfMonstersAppV3.Services;
-using ReactiveUI.Fody.Helpers;
 
 namespace CorpOfMonstersAppV3.ViewModels;
 

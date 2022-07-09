@@ -18,11 +18,12 @@ public class EditWindowViewModel : ViewModelBase
         Contracts = new ObservableCollection<Contract>(FakeDatabase.GetContracts());
         EditEmployee = ReactiveCommand.Create(() => 
             new Employee(EditFirstName, EditLastName, ComboContractSelected!.ContractType));
+        Console.WriteLine(SelectedWorkerIndex);
     }
 
     public ObservableCollection<Contract> Contracts { get; set; }
 
-    public ReactiveCommand<Unit, Employee> EditEmployee { get; } 
+    public ReactiveCommand<Unit, Employee> EditEmployee { get; }
     
     public Contract? ComboContractSelected { get; set; }
 

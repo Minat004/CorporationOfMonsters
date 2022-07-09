@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
-using Avalonia.Controls;
-using Avalonia.Interactivity;
+using Avalonia.Input;
 using Avalonia.ReactiveUI;
 using CorpOfMonstersAppV3.Models;
 using CorpOfMonstersAppV3.ViewModels;
@@ -38,4 +37,5 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
         var result = await dialog.ShowDialog<Employee>(this);
         interaction.SetOutput(result);
     }
+    
 }
