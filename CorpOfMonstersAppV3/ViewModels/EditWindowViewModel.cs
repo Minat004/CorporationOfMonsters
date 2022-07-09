@@ -13,12 +13,22 @@ public class EditWindowViewModel : ViewModelBase
 {
     private string? _firstName;
     private string? _lastName;
-    public EditWindowViewModel()
+    public EditWindowViewModel(Employee? selectedWorkerDetails)
     {
+        SelectedWorkerDetails = selectedWorkerDetails;
+        EditFirstName = SelectedWorkerDetails!.FirstName;
+        EditLastName = SelectedWorkerDetails!.LastName;
+        ComboContractSelected = SelectedWorkerDetails.Contract switch
+        {
+            Intern => new Contract() { ContractType = new Intern() },
+            Regular => new Contract() { ContractType = new Regular() },
+            _ => ComboContractSelected
+        };
         Contracts = new ObservableCollection<Contract>(FakeDatabase.GetContracts());
         EditEmployee = ReactiveCommand.Create(() => 
             new Employee(EditFirstName, EditLastName, ComboContractSelected!.ContractType));
         Console.WriteLine(SelectedWorkerIndex);
+        Console.WriteLine(SelectedWorkerDetails!.ToString());
     }
 
     public ObservableCollection<Contract> Contracts { get; set; }
@@ -26,6 +36,8 @@ public class EditWindowViewModel : ViewModelBase
     public ReactiveCommand<Unit, Employee> EditEmployee { get; }
     
     public Contract? ComboContractSelected { get; set; }
+
+    private Employee? SelectedWorkerDetails { get; }
 
     public string? EditFirstName
     {

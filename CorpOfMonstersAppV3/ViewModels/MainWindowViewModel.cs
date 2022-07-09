@@ -30,7 +30,7 @@ namespace CorpOfMonstersAppV3.ViewModels
             });
             EditWindowCommand = ReactiveCommand.CreateFromTask(async () =>
             {
-                var form = new EditWindowViewModel();
+                var form = new EditWindowViewModel(SelectedWorker);
                 var result = await ShowEditDialog.Handle(form);
                 Workers[SelectedWorkerIndex] = result;
                 Console.WriteLine(SelectedWorkerIndex);

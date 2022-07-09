@@ -19,10 +19,14 @@ public class ViewModelBase : ReactiveObject
 
     public DataGridCollectionView? WorkersCollectionView { get; set; }
 
-    public static Employee? SelectedWorker { get; set; }
-
+    private Employee? _selectedWorker;
+    public Employee? SelectedWorker
+    {
+        get => _selectedWorker; 
+        set => this.RaiseAndSetIfChanged(ref _selectedWorker, value);
+    }
+    
     private int _selectedWorkerIndex;
-
     public int SelectedWorkerIndex
     {
         get => _selectedWorkerIndex;
