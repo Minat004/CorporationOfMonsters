@@ -11,16 +11,40 @@ public class AddWindowViewModel : ViewModelBase
     public AddWindowViewModel()
     {
         Contracts = new ObservableCollection<Contract>(FakeDatabase.GetContracts());
-        AddEmployee = ReactiveCommand.Create(() => new Employee(AddFirstName, AddLastName, ComboContractSelected!.ContractType));
+        AddEmployee = ReactiveCommand.Create(() => 
+            new Employee(AddFirstName, AddLastName, new Contract(ComboContractSelected!.Name, OverHours).ContractType));
     }
 
     public ObservableCollection<Contract> Contracts { get; }
 
     public ReactiveCommand<Unit, Employee>? AddEmployee { get; }
-    
-    public Contract? ComboContractSelected { get; set; }
+
+    private Contract? _comboContractSelected;
+    public Contract? ComboContractSelected
+    {
+        get => _comboContractSelected;
+        set
+        {
+            _comboContractSelected = value;
+            OverHoursIsEnabled = _comboContractSelected!.Name == StringConst.REGULAR;
+            this.RaisePropertyChanged(nameof(ComboContractSelected));
+        }
+    }
     
     public string? AddFirstName { get; set; }
 
     public string? AddLastName { get; set; }
+    
+    private bool _overHoursIsEnabled;
+    public bool OverHoursIsEnabled
+    {
+        get => _overHoursIsEnabled;
+        set
+        {
+            _overHoursIsEnabled = value;
+            this.RaisePropertyChanged(nameof(OverHoursIsEnabled));
+        }
+    }
+
+    public int OverHours { get; set; }
 }

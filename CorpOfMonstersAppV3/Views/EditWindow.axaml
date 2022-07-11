@@ -33,18 +33,30 @@
                  Watermark="Last Name:"/>
         <ComboBox Grid.Row="2" 
                   x:Name="EditContract"
-                  SelectedIndex="0"
                   HorizontalAlignment="Stretch"
+                  SelectedIndex="0"
                   Margin="5"
                   FontSize="16"
-                  Items="{Binding Contracts}"
-                  SelectedItem="{Binding ComboContractSelected}">
+                  Items="{Binding ContractsCollection}"
+                  SelectedItem="{Binding ComboContractSelected, Mode=TwoWay}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}"/>
+                    <TextBlock Text="{Binding Name, Mode=TwoWay}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
+        <StackPanel Grid.Row="3"
+                    x:Name="OverHoursPanel"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    IsEnabled="{Binding OverHoursIsEnabled, Mode=TwoWay}">
+            <Label Content="Over hours"
+                   VerticalAlignment="Center"
+                   Margin="5"/>
+            <TextBox Text="{Binding OverHours, Mode=TwoWay}"
+                     Margin="5"
+                     HorizontalAlignment="Stretch"/>
+        </StackPanel>
         <StackPanel Grid.Row="3"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
