@@ -20,15 +20,7 @@ public static class FakeDatabase
 
     public static IEnumerable<Contract> GetContracts() => new List<Contract>()
     {
-        new Contract()
-        {
-            Name = "Intern",
-            ContractType = new Intern()
-        },
-        new Contract()
-        {
-            Name = "Regular",
-            ContractType = new Regular()
-        }
+        new Contract(StringConst.INTERN),
+        new Contract(StringConst.REGULAR, overHours:0)
     };
 }
