@@ -10,6 +10,6 @@ namespace CorpOfMonstersAppV3.Models
             OverHours = overHours;
         }
         public int OverHours { get; set; }
-        public double Salary() => Math.Round(DefaultSalary + (OverHours * DefaultSalary / 60), 2);
+        public double Salary() => Math.Round(DefaultSalary + OverHours * DefaultSalary / 60, 2);
     }
 }

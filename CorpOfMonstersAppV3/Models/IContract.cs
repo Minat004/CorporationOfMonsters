@@ -3,5 +3,7 @@
     public interface IContract
     {
         public double Salary();
+        
+        public int OverHours { get; set; }
     }
 }
