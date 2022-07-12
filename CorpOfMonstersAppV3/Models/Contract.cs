@@ -7,14 +7,12 @@ public class Contract
     public Contract(string? name, int overHours = 0)
     {
         Name = name;
-        if (overHours == 0 && name == StringConst.INTERN)
+        ContractType = name switch
         {
-            ContractType = new Intern();
-        }
-        else
-        {
-            ContractType = new Regular(overHours);
-        }
+            StringConst.INTERN => new Intern(),
+            StringConst.REGULAR => new Regular(overHours),
+            _ => ContractType
+        };
     }
     public string? Name { get; set; }
     public IContract? ContractType { get; set; }
