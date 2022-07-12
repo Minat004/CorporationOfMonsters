@@ -46,20 +46,9 @@ namespace CorpOfMonstersAppV3.ViewModels
         {
             var emp = arg as Employee;
             
-            return string.IsNullOrEmpty(SearchText) || emp!.FirstName!.ToLower().Contains(SearchText.ToLower()) 
-                                                    || emp.LastName!.ToLower().Contains(SearchText.ToLower());
+            return string.IsNullOrEmpty(SearchText!.Trim()) || emp!.FirstName!.ToLower().Contains(SearchText.ToLower().Trim()) 
+                                                            || emp.LastName!.ToLower().Contains(SearchText.ToLower().Trim());
         }
-
-        // private ObservableCollection<Employee>? _workers;
-        // public ObservableCollection<Employee>? Workers
-        // {
-        //     get => _workers;
-        //     set => this.RaiseAndSetIfChanged(ref _workers, value);
-        // }
-        
-        // public Employee? SelectedWorker { get; set; }
-        //
-        // public int SelectedWorkerIndex { get; set; }
 
         public ICommand AddWindowCommand { get; }
         
