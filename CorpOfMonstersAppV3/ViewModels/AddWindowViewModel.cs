@@ -1,8 +1,12 @@
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reactive;
+using System.Windows.Input;
+using Avalonia.Controls;
 using ReactiveUI;
 using CorpOfMonstersAppV3.Models;
 using CorpOfMonstersAppV3.Services;
+using CorpOfMonstersAppV3.Views;
 
 namespace CorpOfMonstersAppV3.ViewModels;
 
@@ -10,19 +14,19 @@ public class AddWindowViewModel : ViewModelBase
 {
     public AddWindowViewModel()
     {
-        Contracts = new ObservableCollection<Contract>(FakeDatabase.GetContracts());
+        ContractsCollection = new ObservableCollection<Contract>(FakeDatabase.GetContracts());
         AddEmployee = ReactiveCommand.Create(() => 
             new Employee(AddFirstName, AddLastName, new Contract(ComboContractSelected!.Name, OverHours).ContractType));
     }
 
-    public ObservableCollection<Contract> Contracts { get; }
+    public ObservableCollection<Contract> ContractsCollection { get; }
 
     public ReactiveCommand<Unit, Employee>? AddEmployee { get; }
 
     private Contract? _comboContractSelected;
     public Contract? ComboContractSelected
     {
-        get => _comboContractSelected;
+        get => _comboContractSelected = ContractsCollection.FirstOrDefault();
         set
         {
             _comboContractSelected = value;
@@ -47,4 +51,5 @@ public class AddWindowViewModel : ViewModelBase
     }
 
     public int OverHours { get; set; }
+    
 }
