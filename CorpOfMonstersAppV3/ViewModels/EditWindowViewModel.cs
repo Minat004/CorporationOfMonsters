@@ -15,7 +15,6 @@ public class EditWindowViewModel : ViewModelBase
         EditFirstName = SelectedWorkerDetails!.FirstName;
         EditLastName = SelectedWorkerDetails!.LastName;
         OverHours = SelectedWorkerDetails.Contract!.OverHours;
-        Console.WriteLine($"over hours {OverHours}");
         ContractsCollection = new ObservableCollection<Contract>(FakeDatabase.GetContracts());
         EditEmployee = ReactiveCommand.Create(() => 
             new Employee(EditFirstName, EditLastName, new Contract(ComboContractSelected!.Name, OverHours).ContractType));

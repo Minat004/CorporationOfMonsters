@@ -1,12 +1,9 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
-using System.Windows.Input;
-using Avalonia.Controls;
 using ReactiveUI;
 using CorpOfMonstersAppV3.Models;
 using CorpOfMonstersAppV3.Services;
-using CorpOfMonstersAppV3.Views;
 
 namespace CorpOfMonstersAppV3.ViewModels;
 
