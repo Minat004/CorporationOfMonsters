@@ -34,7 +34,6 @@
         <ComboBox Grid.Row="2" 
                   x:Name="EditContract"
                   HorizontalAlignment="Stretch"
-                  SelectedIndex="0"
                   Margin="5"
                   FontSize="16"
                   Items="{Binding ContractsCollection}"

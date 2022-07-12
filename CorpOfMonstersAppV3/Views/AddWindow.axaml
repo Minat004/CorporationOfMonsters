@@ -37,7 +37,7 @@
                   HorizontalAlignment="Stretch"
                   Margin="5"
                   FontSize="16"
-                  Items="{Binding Contracts}"
+                  Items="{Binding ContractsCollection}"
                   SelectedItem="{Binding ComboContractSelected, Mode=TwoWay}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>

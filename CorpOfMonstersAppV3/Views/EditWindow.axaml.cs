@@ -19,8 +19,6 @@ public partial class EditWindow : ReactiveWindow<EditWindowViewModel>
         this.WhenActivated(d =>
         {
             d(ViewModel!.EditEmployee.Subscribe(Close));
-            // var editContract = this.Find<ComboBox>("EditContract");
-            // editContract.SelectedIndex = 0;
         });
     }
 
