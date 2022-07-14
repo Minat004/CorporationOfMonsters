@@ -4,6 +4,7 @@ using System.Reactive;
 using CorpOfMonstersAppV3.Models;
 using CorpOfMonstersAppV3.Services;
 using ReactiveUI;
+using ReactiveUI.Validation.Extensions;
 
 namespace CorpOfMonstersAppV3.ViewModels;
 
@@ -11,13 +12,19 @@ public class EditWindowViewModel : ViewModelBase
 {
     public EditWindowViewModel(Employee? selectedWorkerDetails)
     {
+        this.ValidationRule(x => x.OverHours,
+            hours => !string.IsNullOrWhiteSpace(hours) && int.TryParse(hours, out _) && int.Parse(hours) >= 0,
+            "Only a positive number");
+        
         SelectedWorkerDetails = selectedWorkerDetails;
         EditFirstName = SelectedWorkerDetails!.FirstName;
         EditLastName = SelectedWorkerDetails!.LastName;
-        OverHours = SelectedWorkerDetails.Contract!.OverHours;
+        OverHours = SelectedWorkerDetails.Contract!.OverHours.ToString();
+        
         ContractsCollection = new ObservableCollection<Contract>(FakeDatabase.GetContracts());
         EditEmployee = ReactiveCommand.Create(() => 
-            new Employee(EditFirstName, EditLastName, new Contract(ComboContractSelected!.Name, OverHours).ContractType));
+            new Employee(EditFirstName, EditLastName, new Contract(ComboContractSelected!.Name, 
+                int.Parse(OverHours)).ContractType));
     }
 
     public EditWindowViewModel()
@@ -47,7 +54,7 @@ public class EditWindowViewModel : ViewModelBase
         set
         {
             _comboContractSelected = value;
-            OverHoursIsEnabled = _comboContractSelected!.Name == StringConst.REGULAR;
+            OverHoursIsEnabled = _comboContractSelected!.Name == StringConst.Regular;
             this.RaisePropertyChanged(nameof(ComboContractSelected));
         }
     }
@@ -58,12 +65,21 @@ public class EditWindowViewModel : ViewModelBase
 
     public string? EditLastName { get; set; }
 
-    public int OverHours { get; set; }
+    private string? _overHours;
+    public string? OverHours
+    {
+        get => _overHours;
+        set
+        {
+            _overHours = value;
+            this.RaisePropertyChanged(nameof(OverHours));
+        }
+    }
 
     private bool _overHoursIsEnabled;
     public bool OverHoursIsEnabled
     {
-        get => _overHoursIsEnabled = _comboContractSelected!.Name == StringConst.REGULAR;
+        get => _overHoursIsEnabled = _comboContractSelected!.Name == StringConst.Regular;
         set
         {
             _overHoursIsEnabled = value;

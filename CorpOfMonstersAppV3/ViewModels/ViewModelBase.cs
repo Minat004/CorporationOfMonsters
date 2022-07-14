@@ -3,10 +3,11 @@ using System.Collections.ObjectModel;
 using Avalonia.Collections;
 using CorpOfMonstersAppV3.Models;
 using ReactiveUI;
+using ReactiveUI.Validation.Helpers;
 
 namespace CorpOfMonstersAppV3.ViewModels;
 
-public class ViewModelBase : ReactiveObject
+public class ViewModelBase : ReactiveValidationObject
 {
     
     private ObservableCollection<Employee>? _workers;
