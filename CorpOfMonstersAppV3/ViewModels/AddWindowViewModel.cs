@@ -4,6 +4,7 @@ using System.Reactive;
 using ReactiveUI;
 using CorpOfMonstersAppV3.Models;
 using CorpOfMonstersAppV3.Services;
+using ReactiveUI.Validation.Extensions;
 
 namespace CorpOfMonstersAppV3.ViewModels;
 
@@ -11,9 +12,13 @@ public class AddWindowViewModel : ViewModelBase
 {
     public AddWindowViewModel()
     {
+        this.ValidationRule(x => x.OverHours,
+            hours => !string.IsNullOrWhiteSpace(hours) && int.TryParse(hours, out _) && int.Parse(hours) >= 0,
+            "Only a positive number");
+        
         ContractsCollection = new ObservableCollection<Contract>(FakeDatabase.GetContracts());
         AddEmployee = ReactiveCommand.Create(() => 
-            new Employee(AddFirstName, AddLastName, new Contract(ComboContractSelected!.Name, OverHours).ContractType));
+            new Employee(AddFirstName, AddLastName, new Contract(ComboContractSelected!.Name, int.Parse(OverHours!)).ContractType));
     }
 
     public ObservableCollection<Contract> ContractsCollection { get; }
@@ -27,7 +32,7 @@ public class AddWindowViewModel : ViewModelBase
         set
         {
             _comboContractSelected = value;
-            OverHoursIsEnabled = _comboContractSelected!.Name == StringConst.REGULAR;
+            OverHoursIsEnabled = _comboContractSelected!.Name == StringConst.Regular;
             this.RaisePropertyChanged(nameof(ComboContractSelected));
         }
     }
@@ -47,6 +52,15 @@ public class AddWindowViewModel : ViewModelBase
         }
     }
 
-    public int OverHours { get; set; }
+    private string? _overHours = "0";
+    public string? OverHours
+    {
+        get => _overHours;
+        set
+        {
+            _overHours = value;
+            this.RaisePropertyChanged(nameof(OverHours));
+        }
+    }
     
 }

@@ -55,7 +55,7 @@
                    Margin="5"/>
             <TextBox Text="{Binding OverHours, Mode=TwoWay}"
                      Margin="5"
-                     HorizontalAlignment="Stretch"/>
+                     Width="50"/>
         </StackPanel>
         <StackPanel Grid.Row="3"
                     Orientation="Horizontal"
