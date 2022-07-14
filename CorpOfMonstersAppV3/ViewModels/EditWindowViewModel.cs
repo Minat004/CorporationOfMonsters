@@ -13,7 +13,8 @@ public class EditWindowViewModel : ViewModelBase
     public EditWindowViewModel(Employee? selectedWorkerDetails)
     {
         this.ValidationRule(x => x.OverHours,
-            hours => !string.IsNullOrWhiteSpace(hours) && int.TryParse(hours, out _) && int.Parse(hours) >= 0,
+            hours => !string.IsNullOrWhiteSpace(hours) && int.TryParse(hours, out _)
+                                                       && int.Parse(hours) >= 0,
             "Only a positive number");
         
         SelectedWorkerDetails = selectedWorkerDetails;
@@ -55,6 +56,10 @@ public class EditWindowViewModel : ViewModelBase
         {
             _comboContractSelected = value;
             OverHoursIsEnabled = _comboContractSelected!.Name == StringConst.Regular;
+            if (_comboContractSelected!.Name == StringConst.Intern)
+            {
+                OverHours = "0";
+            }
             this.RaisePropertyChanged(nameof(ComboContractSelected));
         }
     }

@@ -1,5 +1,5 @@
+using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Reactive;
 using ReactiveUI;
 using CorpOfMonstersAppV3.Models;
@@ -13,12 +13,16 @@ public class AddWindowViewModel : ViewModelBase
     public AddWindowViewModel()
     {
         this.ValidationRule(x => x.OverHours,
-            hours => !string.IsNullOrWhiteSpace(hours) && int.TryParse(hours, out _) && int.Parse(hours) >= 0,
+            hours => !string.IsNullOrWhiteSpace(hours) && int.TryParse(hours, out _) 
+                                                       && int.Parse(hours) >= 0,
             "Only a positive number");
+        
+        Console.WriteLine(OverHours);
         
         ContractsCollection = new ObservableCollection<Contract>(FakeDatabase.GetContracts());
         AddEmployee = ReactiveCommand.Create(() => 
-            new Employee(AddFirstName, AddLastName, new Contract(ComboContractSelected!.Name, int.Parse(OverHours!)).ContractType));
+            new Employee(AddFirstName, AddLastName, new Contract(ComboContractSelected!.Name, 
+                int.Parse(OverHours!)).ContractType));
     }
 
     public ObservableCollection<Contract> ContractsCollection { get; }
@@ -28,11 +32,15 @@ public class AddWindowViewModel : ViewModelBase
     private Contract? _comboContractSelected;
     public Contract? ComboContractSelected
     {
-        get => _comboContractSelected = ContractsCollection.FirstOrDefault();
+        get => _comboContractSelected;
         set
         {
             _comboContractSelected = value;
             OverHoursIsEnabled = _comboContractSelected!.Name == StringConst.Regular;
+            if (_comboContractSelected!.Name == StringConst.Intern)
+            {
+                OverHours = "0";
+            }
             this.RaisePropertyChanged(nameof(ComboContractSelected));
         }
     }

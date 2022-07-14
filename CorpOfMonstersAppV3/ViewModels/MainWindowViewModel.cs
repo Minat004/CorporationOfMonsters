@@ -15,7 +15,17 @@ public class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
-        Workers = new ObservableCollection<Employee>(FakeDatabase.GetWorkers());
+        try
+        {
+            var dataBaseHelper = new DataBaseHelper("Data Source=db_console_test.sqlite");
+            Workers = new ObservableCollection<Employee>(dataBaseHelper.ReadData());
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+        
+        // Workers = new ObservableCollection<Employee>(FakeDatabase.GetWorkers());
         WorkersCollectionView = new DataGridCollectionView(Workers)
         {
             Filter = FilterGrid
@@ -33,7 +43,7 @@ public class MainWindowViewModel : ViewModelBase
             }
             else
             {
-                Workers.Add(result);
+                Workers!.Add(result);
             }
 
         });
@@ -48,13 +58,13 @@ public class MainWindowViewModel : ViewModelBase
             }
             else
             {
-                Workers[SelectedWorkerIndex] = result;
+                Workers![SelectedWorkerIndex] = result;
             }
                 
         });
         DeleteCommand = ReactiveCommand.Create(() =>
         {
-            Workers.RemoveAt(SelectedWorkerIndex);
+            Workers!.RemoveAt(SelectedWorkerIndex);
         });
     }
 

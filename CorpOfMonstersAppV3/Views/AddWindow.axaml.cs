@@ -22,6 +22,8 @@ public partial class AddWindow : ReactiveWindow<AddWindowViewModel>
         this.WhenActivated(d =>
         {
             d(ViewModel!.AddEmployee!.Subscribe(Close));
+            var addContract = this.Find<ComboBox>("AddContract");
+            addContract.SelectedIndex = 0;
         });
     }
 
