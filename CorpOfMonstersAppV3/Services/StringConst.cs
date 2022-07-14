@@ -1,7 +1,7 @@
 namespace CorpOfMonstersAppV3.Services;
 
-public class StringConst
+public static class StringConst
 {
-    public const string INTERN = "Intern";
-    public const string REGULAR = "Regular";
+    public const string Intern = "Intern";
+    public const string Regular = "Regular";
 }

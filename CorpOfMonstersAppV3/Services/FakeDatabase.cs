@@ -20,7 +20,7 @@ public static class FakeDatabase
 
     public static IEnumerable<Contract> GetContracts() => new List<Contract>()
     {
-        new Contract(StringConst.INTERN),
-        new Contract(StringConst.REGULAR, overHours:0)
+        new Contract(StringConst.Intern),
+        new Contract(StringConst.Regular, overHours:0)
     };
 }

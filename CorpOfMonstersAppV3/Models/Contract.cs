@@ -9,8 +9,8 @@ public class Contract
         Name = name;
         ContractType = name switch
         {
-            StringConst.INTERN => new Intern(),
-            StringConst.REGULAR => new Regular(overHours),
+            StringConst.Intern => new Intern(),
+            StringConst.Regular => new Regular(overHours),
             _ => ContractType
         };
     }
